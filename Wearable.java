@@ -38,7 +38,7 @@ public class Wearable {
      *
      * @param   data        the string to split into fields
      */
-    public void Wearable(String data) {
+    public Wearable(String data) {
         if (data == null) {
             throw new IllegalArgumentException("data must not be null");
         }
@@ -159,5 +159,9 @@ public class Wearable {
      */
     public String getCoCountry() {
         return coCountry;
+    }
+    
+    public String toString() {
+        return rank + "\t" + name + "\t" + price + "\t" + coName;
     }
 }
