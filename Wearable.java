@@ -1,0 +1,163 @@
+/**
+ * Maintain data about a fitness tracker
+ *
+ * @author Eric Boris
+ * @version 11/4/18
+ */
+public class Wearable {
+    /** rank                the consumer ranking of the wearable */
+    private int rank;
+    /** name                the name of the wearable */
+    private String name;
+    /** price               the price of the wearable */
+    private double price;
+    /** bodyLocation        the location on the body the wearable is worn */
+    private String bodyLocation;
+    /** category            the style category of the wearable */
+    private String category;
+    /** coName              the company name that makes the wearable */
+    private String coName;
+    /** coUrl               the company website url */
+    private String coUrl;
+    /** coLocation          the company world location */
+    private String coLocation;
+    /** coCity              the company city */
+    private String coCity;
+    /** coUsState           if made in the US, the company state */
+    private String coUsState;
+    /** coCountry           the company country */
+    private String coCountry;
+    
+    /** MAP                 the default mapping of the wearable data string */
+    public static final String MAP = "Ranking@Name@Price@Body.Location@Category@" + 
+                                     "Company.Name@Company.URL@Company...Mapping.Location@" +
+                                     "Company...City@Company...U.S..State@Company...Country";
+    
+    /**
+     * construct a wearable based on a string of data
+     *
+     * @param   data        the string to split into fields
+     */
+    public void Wearable(String data) {
+        if (data == null) {
+            throw new IllegalArgumentException("data must not be null");
+        }
+        String[] mapFields = MAP.split("@");
+        String[] dataFields = data.split("@");
+        for (int field = 0; field < mapFields.length; field++) {
+            String fieldName = mapFields[field];
+            switch (fieldName) {
+                case "Ranking"                    : this.rank = Integer.parseInt(dataFields[field]);    break;
+                case "Name"                       : this.name = dataFields[field];                      break;
+                case "Price"                      : this.price = Double.parseDouble(dataFields[field]); break;
+                case "Body.Location"              : this.bodyLocation = dataFields[field];              break;
+                case "Category"                   : this.category = dataFields[field];                  break;
+                case "Company.Name"               : this.coName = dataFields[field];                    break;
+                case "Company.URL"                : this.coUrl = dataFields[field];                     break;
+                case "Company...Mapping.Location" : this.coLocation = dataFields[field];                break;
+                case "Company...City"             : this.coCity = dataFields[field];                    break;
+                case "Company...U.S..State"       : this.coUsState = dataFields[field];                 break;
+                case "Company...Country"          : this.coCountry = dataFields[field];                 break;
+            }
+        }
+    }
+    
+    /**
+     * get the consumer ranking
+     * 
+     * @return              the ranking
+     */
+    public int getRank() {
+        return rank;
+    }
+    
+    /**
+     * get the name
+     * 
+     * @return              the name
+     */
+    public String getName() {
+        return name;
+    }
+    
+    /**
+     * get the price
+     * 
+     * @return              the price
+     */
+    public double getPrice() {
+        return price;
+    }
+    
+    /**
+     * get the body location
+     * 
+     * @return              the location on the body worn
+     */
+    public String getBodyLocation() {
+        return bodyLocation;
+    }
+    
+    /**
+     * get the category
+     * 
+     * @return              the style category
+     */
+    public String getCategory() {
+        return category;
+    }
+    
+    /**
+     * get the company name
+     * 
+     * @return              the company name
+     */
+    public String getCoName() {
+        return coName;
+    }
+    
+    /**
+     * get the company url
+     * 
+     * @return              the company url
+     */
+    public String getCoUrl() {
+        return coUrl;
+    }
+    
+    /**
+     * get the company global location
+     * 
+     * @return              the company global location
+     */
+    public String getCoLocation() {
+        return coLocation;
+    }
+    
+    /**
+     * get the company city
+     * 
+     * @return              the company city
+     */
+    public String getCoCity() {
+        return coCity;
+    }
+    
+    /**
+     * get the company US state
+     * 
+     * @return              the company US state
+     */
+    public String getCoUsState() {
+        return coUsState;
+    }
+    
+    /**
+     * get the company country
+     * 
+     * @return              the company country
+     */
+    public String getCoCountry() {
+        return coCountry;
+    }
+}
