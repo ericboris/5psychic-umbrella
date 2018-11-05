@@ -33,6 +33,9 @@ public class BinaryNode<E> {
      * @param   right       the node to the right of this one
      */
     public BinaryNode(E data, int position, BinaryNode<E> left, BinaryNode<E> right) {
+        if (data == null) {
+            throw new IllegalArgumentException("data must not be null");
+        }
         this.data = data;
         this.position = position;
         this.left = left;
