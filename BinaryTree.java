@@ -27,6 +27,9 @@ public class BinaryTree<E extends Comparable<E>> {
         if (data == null) {
             throw new IllegalArgumentException("data must not be null");
         }
+        if (index < 0) {
+            throw new IndexOutOfBoundsException("index : " + index);
+        }
         root = add(data, index, root);
     }
     

@@ -129,6 +129,10 @@ public class Wearables {
      * @return              false if file creation fails, true otherwise
      */
     public boolean toCsv(String fileName, int[] indices) {
+        if (fileName == null || indices == null) {
+            throw new IllegalArgumentException("argument must not be null");
+        }
+        
         StringBuilder sb = new StringBuilder();
         for (String h : header) {
             sb.append(h + ",");

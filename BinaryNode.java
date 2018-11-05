@@ -36,6 +36,9 @@ public class BinaryNode<E> {
         if (data == null) {
             throw new IllegalArgumentException("data must not be null");
         }
+        if (index < 0) {
+            throw new IndexOutOfBoundsException("index : " + index);
+        }
         this.data = data;
         this.index = index;
         this.left = left;
