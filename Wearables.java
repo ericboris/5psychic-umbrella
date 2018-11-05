@@ -20,9 +20,9 @@ public class Wearables {
     /** rankTree        an ordered array of wearables by rank */
     private BinaryTree<Integer> rankTree;
     /** priceTree       an ordered array of wearables by price */
-    private BinaryTree<Double> priceTree;
+    private TernaryTree<Double> priceTree;
     /** coNameTree      and ordered array of wearables by company name */
-    private BinaryTree<String> coNameTree;
+    private TernaryTree<String> coNameTree;
     
     /** SPLIT_CHAR      the split delimiter used in the file */
     private static final String SPLIT_CHAR = "@";
@@ -32,8 +32,8 @@ public class Wearables {
      */
     public Wearables() {
         rankTree = new BinaryTree<Integer>();
-        priceTree = new BinaryTree<Double>();
-        coNameTree = new BinaryTree<String>();
+        priceTree = new TernaryTree<Double>();
+        coNameTree = new TernaryTree<String>();
     }
     
     /**
