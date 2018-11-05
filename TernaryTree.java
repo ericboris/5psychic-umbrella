@@ -44,10 +44,24 @@ public class TernaryTree<E extends Comparable<E>> {
         } else if (node.data.compareTo(data) > 0) {
             node.left = add(data, position, node.left);
         } else if (node.data.compareTo(data) == 0) {
-            node.same = add(data, position, node.same);
-            //node.same = addUnary(position, node.same);
+            node.same = addUnary(position, node.same);
         } else {
             node.right = add(data, position, node.right);
+        }
+        return node;
+    }
+    
+    /**
+     * add a unary node
+     * 
+     * @param   position    the position data for the node
+     * @param   node        the root node to compare against
+     */
+    private UnaryNode addUnary(int position, UnaryNode node) {
+        if (node == null) {
+            node = new UnaryNode(position);
+        } else {
+            node.next = addUnary(position, node.next);
         }
         return node;
     }

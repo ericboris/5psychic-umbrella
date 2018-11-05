@@ -12,8 +12,7 @@ public class TernaryNode<E>{
     /** left            the node to the left of this one */
     public TernaryNode<E> left;
     /** same            the next node that stores the same comparable data */
-    //public UnaryNode same;
-    public TernaryNode<E> same;
+    public UnaryNode same;
     /** right           the node to the right of this one */
     public TernaryNode<E> right;
     
@@ -36,8 +35,7 @@ public class TernaryNode<E>{
      * @param   same        the next node that stores the same comparable data
      * @param   right       the node to the right of this one
      */
-    //public TernaryNode(E data, int position, TernaryNode<E> left, UnaryNode same, TernaryNode<E> right) {
-    public TernaryNode(E data, int position, TernaryNode<E> left, TernaryNode<E> same, TernaryNode<E> right) {
+    public TernaryNode(E data, int position, TernaryNode<E> left, UnaryNode same, TernaryNode<E> right) {
         if (data == null) {
             throw new IllegalArgumentException("data must not be null");
         }
