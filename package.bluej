@@ -1,9 +1,9 @@
 #BlueJ package file
-dependency1.from=Main
-dependency1.to=Wearables
+dependency1.from=BinaryTree
+dependency1.to=BinaryNode
 dependency1.type=UsesDependency
-dependency2.from=BinaryTree
-dependency2.to=BinaryNode
+dependency2.from=Main
+dependency2.to=Wearables
 dependency2.type=UsesDependency
 dependency3.from=Wearables
 dependency3.to=BinaryTree

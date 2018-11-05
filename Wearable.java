@@ -33,12 +33,11 @@ public class Wearable {
      *
      * @param   data        the string to split into fields
      */
-    public Wearable(String data, String header) {
-        if (data == null) {
+    public Wearable(String[] dataFields, String[] headerFields) {
+        if (dataFields == null) {
             throw new IllegalArgumentException("data must not be null");
         }
-        String[] headerFields = header.split("@");
-        String[] dataFields = data.split("@");
+        
         for (int field = 0; field < headerFields.length; field++) {
             String fieldName = headerFields[field];
             switch (fieldName) {

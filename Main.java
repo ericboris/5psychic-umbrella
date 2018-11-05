@@ -23,5 +23,7 @@ public class Main {
         System.out.println(w.get(r[0]).toString());
         System.out.println(w.get(r[1]).toString());
         System.out.println(w.get(r[2]).toString());
+        
+        w.toCsv("rankings", r);
     }
 }
