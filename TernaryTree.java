@@ -85,12 +85,33 @@ public class TernaryTree<E extends Comparable<E>> {
      */
     private int[] getAll(int[] positionsArray, TernaryNode<E> node) {
         if (node != null) {
+            // down the left chain
             positionsArray = getAll(positionsArray, node.left);
+            // down the same chain
+            positionsArray = getAllSame(positionsArray, node.same);
+            // work on this node and add it to the array
             // increase the length of the array by 1
             positionsArray = Arrays.copyOf(positionsArray, positionsArray.length + 1);
             // and add the current node's position data at the end
             positionsArray[positionsArray.length - 1] = node.position;
+            // down the right chain
             positionsArray = getAll(positionsArray, node.right);
+        }
+        return positionsArray;
+    }
+    
+    /**
+     * get the position data of each unary node
+     * 
+     * @param   positionsArray      an ordered array of each node's position data
+     * @param   node                the current node in the tree
+     * @return                      an ordered array of each node's position data   
+     */
+    private int[] getAllSame(int[] positionsArray, UnaryNode node) {
+        if (node != null) {
+            positionsArray = getAllSame(positionsArray, node.next);
+            positionsArray = Arrays.copyOf(positionsArray, positionsArray.length + 1);
+            positionsArray[positionsArray.length - 1] = node.position;
         }
         return positionsArray;
     }
