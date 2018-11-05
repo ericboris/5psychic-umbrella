@@ -11,8 +11,16 @@ import java.util.ArrayList;
  * @version 11/4/2018
  */
 public class Wearables {
+    /** header          the header of the text file */
+    private String header;
     /** wearables       an array of wearable objects */
     private Wearable[] wearables;
+    /** rankData        an ordered array of wearables by rank */
+    private BinaryTree<Integer> rankings;
+    
+    public Wearables() {
+        rankings = new BinaryTree<Integer>();
+    }
     
     /**
      * fill the wearables array from the provided file
@@ -25,17 +33,20 @@ public class Wearables {
         }
         File file = new File(fileName);
         BufferedReader br = null;
-        ArrayList<Wearable> lines = new ArrayList<Wearable>();
+        ArrayList<Wearable> wearablesAL = new ArrayList<Wearable>();
         try {
             br = new BufferedReader(new FileReader(file));
             String line;
-            // skip the first two lines
+            // skip the first line of the file
             br.readLine();
-            br.readLine();
+            header = br.readLine();
             
             // read each line out of the file
+            int index = 0;
             while ((line = br.readLine()) != null) {
-                lines.add(new Wearable(line));
+                wearablesAL.add(new Wearable(line, header));
+                String[] splitLine = line.split("@");
+                rankings.add(Integer.parseInt(splitLine[0]), index++);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -46,7 +57,7 @@ public class Wearables {
                 e.printStackTrace();
             }
         }
-        this.wearables = lines.toArray(new Wearable[lines.size()]);
+        this.wearables = wearablesAL.toArray(new Wearable[wearablesAL.size()]);
     }
     
     /**
@@ -62,5 +73,7 @@ public class Wearables {
         return wearables[index];
     }
     
-    
+    public int[] getRankingData() {
+        return rankings.getAll();
+    }
 }

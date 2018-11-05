@@ -1,10 +1,14 @@
 #BlueJ class context
 comment0.target=Wearables
 comment0.text=\n\ client\ code\ interface\ for\ accessing\ wearables\ and\ their\ indices\n\n\ @author\ Eric\ Boris\n\ @version\ 11/4/2018\n
-comment1.params=fileName
-comment1.target=void\ fill(java.lang.String)
-comment1.text=\n\ fill\ the\ wearables\ array\ from\ the\ provided\ file\n\ \n\ @param\ \ \ fileName\ \ \ \ \ \ \ \ the\ name\ of\ the\ file\ to\ access\n
-comment2.params=index
-comment2.target=Wearable\ get(int)
-comment2.text=\n\ get\ the\ wearable\ at\ the\ provided\ index\n\ \n\ @param\ \ \ index\ \ \ \ \ \ \ the\ index\ of\ the\ provided\ wearable\ to\ return\n\ @return\ \ \ \ \ \ \ \ \ \ \ \ \ \ a\ wearable\ at\ the\ provided\ index\n
-numComments=3
+comment1.params=
+comment1.target=Wearables()
+comment2.params=fileName
+comment2.target=void\ fill(java.lang.String)
+comment2.text=\n\ fill\ the\ wearables\ array\ from\ the\ provided\ file\n\ \n\ @param\ \ \ fileName\ \ \ \ \ \ \ \ the\ name\ of\ the\ file\ to\ access\n
+comment3.params=index
+comment3.target=Wearable\ get(int)
+comment3.text=\n\ get\ the\ wearable\ at\ the\ provided\ index\n\ \n\ @param\ \ \ index\ \ \ \ \ \ \ the\ index\ of\ the\ provided\ wearable\ to\ return\n\ @return\ \ \ \ \ \ \ \ \ \ \ \ \ \ a\ wearable\ at\ the\ provided\ index\n
+comment4.params=
+comment4.target=int[]\ getRankingData()
+numComments=5

@@ -28,24 +28,19 @@ public class Wearable {
     /** coCountry           the company country */
     private String coCountry;
     
-    /** MAP                 the default mapping of the wearable data string */
-    public static final String MAP = "Ranking@Name@Price@Body.Location@Category@" + 
-                                     "Company.Name@Company.URL@Company...Mapping.Location@" +
-                                     "Company...City@Company...U.S..State@Company...Country";
-    
     /**
      * construct a wearable based on a string of data
      *
      * @param   data        the string to split into fields
      */
-    public Wearable(String data) {
+    public Wearable(String data, String header) {
         if (data == null) {
             throw new IllegalArgumentException("data must not be null");
         }
-        String[] mapFields = MAP.split("@");
+        String[] headerFields = header.split("@");
         String[] dataFields = data.split("@");
-        for (int field = 0; field < mapFields.length; field++) {
-            String fieldName = mapFields[field];
+        for (int field = 0; field < headerFields.length; field++) {
+            String fieldName = headerFields[field];
             switch (fieldName) {
                 case "Ranking"                    : this.rank = Integer.parseInt(dataFields[field]);    break;
                 case "Name"                       : this.name = dataFields[field];                      break;
