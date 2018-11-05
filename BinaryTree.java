@@ -9,15 +9,12 @@ import java.util.Arrays;
 public class BinaryTree<E extends Comparable<E>> {
     /** root        the root of the binary tree */
     private BinaryNode<E> root;
-    /** size        the number of nodes in the tree */
-    private int size;
     
     /**
      * construct a new tree
      */
     public BinaryTree() {
         root = null;
-        size = 0;
     }
     
     /** 
@@ -31,7 +28,6 @@ public class BinaryTree<E extends Comparable<E>> {
             throw new IllegalArgumentException("data must not be null");
         }
         root = add(data, position, root);
-        size++;
     }
     
     /**
@@ -53,20 +49,31 @@ public class BinaryTree<E extends Comparable<E>> {
         return node;
     }
     
+    /**
+     * get all the nodes of the tree in order
+     * 
+     * return               an ordered array of all of the nodes' positions
+     */
     public int[] getAll() {
         int[] positionsArray = new int[0];
-        int index = 0;
-        return getAll(positionsArray, index, root);
+        return getAll(positionsArray, root);
     }
     
-    private int[] getAll(int[] positionsArray, int index, BinaryNode<E> node) {
+    /**
+     * search through each node and return an ordered array of elements
+     * 
+     * @param   positionsArray      an ordered array of each node's position data
+     * @param   node                the current node in the tree
+     * @return                      an ordered array of each node's position data   
+     */
+    private int[] getAll(int[] positionsArray, BinaryNode<E> node) {
         if (node != null) {
-            positionsArray = getAll(positionsArray, index, node.left);
+            positionsArray = getAll(positionsArray, node.left);
             // increase the length of the array by 1
             positionsArray = Arrays.copyOf(positionsArray, positionsArray.length + 1);
             // and add the current node's position data at the end
             positionsArray[positionsArray.length - 1] = node.position;
-            positionsArray = getAll(positionsArray, index, node.right);
+            positionsArray = getAll(positionsArray, node.right);
         }
         return positionsArray;
     }
