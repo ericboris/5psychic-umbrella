@@ -18,7 +18,9 @@ public class Wearables {
     /** wearables       an array of wearable objects */
     private Wearable[] wearables;
     /** rankData        an ordered array of wearables by rank */
-    private BinaryTree<Integer> rankings;
+    private BinaryTree<Integer> rankTree;
+    /** priceData       an ordered array of wearables by price */
+    private BinaryTree<Double> priceTree;
     
     /** SPLIT_CHAR      the split delimiter used in the file */
     private static final String SPLIT_CHAR = "@";
@@ -27,7 +29,8 @@ public class Wearables {
      * create a new wearables object
      */
     public Wearables() {
-        rankings = new BinaryTree<Integer>();
+        rankTree = new BinaryTree<Integer>();
+        priceTree = new BinaryTree<Double>();
     }
     
     /**
@@ -55,7 +58,9 @@ public class Wearables {
             while ((line = br.readLine()) != null) {
                 String[] splitLine = line.split(SPLIT_CHAR);
                 wearablesAL.add(new Wearable(splitLine, header));
-                rankings.add(Integer.parseInt(splitLine[0]), index++);
+                rankTree.add(Integer.parseInt(splitLine[0]), index);
+                priceTree.add(Double.parseDouble(splitLine[2]), index);
+                index++;
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -88,7 +93,16 @@ public class Wearables {
      * @return              an ordered array of the ranking position data
      */
     public int[] getRankingData() {
-        return rankings.getAll();
+        return rankTree.getAll();
+    }
+    
+    /**
+     * get an ordered array of the price position data
+     * 
+     * @return              an ordered array of the price position data
+     */
+    public int[] getPriceData() {
+        return priceTree.getAll();
     }
     
     /**

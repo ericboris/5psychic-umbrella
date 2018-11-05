@@ -23,7 +23,15 @@ public class Main {
         System.out.println(w.get(r[0]).toString());
         System.out.println(w.get(r[1]).toString());
         System.out.println(w.get(r[2]).toString());
-        
+        System.out.println("\n");
         w.toCsv("rankings", r);
+        
+        int[] p = w.getPriceData();
+        System.out.println("Most expensive wearables");
+        System.out.println(w.get(p[p.length - 1]).toString());
+        System.out.println(w.get(p[p.length - 2]).toString());
+        System.out.println(w.get(p[p.length - 3]).toString());
+        System.out.println("\n");
+        w.toCsv("prices", p);
     }
 }
