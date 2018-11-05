@@ -17,10 +17,12 @@ public class Wearables {
     private String[] header;
     /** wearables       an array of wearable objects */
     private Wearable[] wearables;
-    /** rankData        an ordered array of wearables by rank */
+    /** rankTree        an ordered array of wearables by rank */
     private BinaryTree<Integer> rankTree;
-    /** priceData       an ordered array of wearables by price */
+    /** priceTree       an ordered array of wearables by price */
     private BinaryTree<Double> priceTree;
+    /** coNameTree      and ordered array of wearables by company name */
+    private BinaryTree<String> coNameTree;
     
     /** SPLIT_CHAR      the split delimiter used in the file */
     private static final String SPLIT_CHAR = "@";
@@ -31,6 +33,7 @@ public class Wearables {
     public Wearables() {
         rankTree = new BinaryTree<Integer>();
         priceTree = new BinaryTree<Double>();
+        coNameTree = new BinaryTree<String>();
     }
     
     /**
@@ -60,6 +63,7 @@ public class Wearables {
                 wearablesAL.add(new Wearable(splitLine, header));
                 rankTree.add(Integer.parseInt(splitLine[0]), index);
                 priceTree.add(Double.parseDouble(splitLine[2]), index);
+                coNameTree.add(splitLine[5], index);
                 index++;
             }
         } catch (IOException e) {
@@ -103,6 +107,15 @@ public class Wearables {
      */
     public int[] getPriceData() {
         return priceTree.getAll();
+    }
+    
+    /**
+     * get an ordered array of the company name position data
+     * 
+     * @return              an ordered array of the company name position data
+     */
+    public int[] getCoNameData() {
+        return coNameTree.getAll();
     }
     
     /**
