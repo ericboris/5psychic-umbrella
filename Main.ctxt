@@ -3,4 +3,5 @@ comment0.target=Main
 comment0.text=\n\ demonstrate\ the\ functionality\ of\ wearables\n\n\ @author\ Eric\ Boris\n\ @version\ 11/4/18\n
 comment1.params=args
 comment1.target=void\ main(java.lang.String[])
+comment1.text=\n\ use\ wearables\ class\n\ \n\ @param\ \ \ args\ \ \ \ \ \ \ \ the\ command\ line\ arguments\n
 numComments=2

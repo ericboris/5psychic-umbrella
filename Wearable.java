@@ -31,7 +31,8 @@ public class Wearable {
     /**
      * construct a wearable based on a string of data
      *
-     * @param   data        the string to split into fields
+     * @param   dataFields      an array of data
+     * @param   headerFields    and array of headers to split the data on     
      */
     public Wearable(String[] dataFields, String[] headerFields) {
         if (dataFields == null) {

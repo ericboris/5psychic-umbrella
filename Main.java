@@ -7,6 +7,11 @@ import java.util.Arrays;
  * @version 11/4/18
  */
 public class Main {
+    /**
+     * use wearables class
+     * 
+     * @param   args        the command line arguments
+     */
     public static void main(String[] args) {
         String fileName = "WearablesArray.txt";
         Wearables w = new Wearables();

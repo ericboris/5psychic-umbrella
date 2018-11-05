@@ -5,42 +5,45 @@
  * @version 11/4/18
  */
 public class TernaryNode<E>{
-    /** data            the comparable data stored in the node */
+    /** data                the comparable data stored in the node */
     public E data;
-    /** position        the position data stored in the node */
-    public int position;
-    /** left            the node to the left of this one */
+    /** index               the index data stored in the node */
+    public int index;
+    /** left                the node to the left of this one */
     public TernaryNode<E> left;
-    /** same            the next node that stores the same comparable data */
+    /** same                the next node that stores the same comparable data */
     public UnaryNode same;
-    /** right           the node to the right of this one */
+    /** right               the node to the right of this one */
     public TernaryNode<E> right;
     
     /**
      * create a new node
      * 
      * @param   data        the comparable data to store in this node
-     * @param   position    the position data to store in this node
+     * @param   index       the index data to store in this node
      */
-    public TernaryNode(E data, int position) {
-        this(data, position, null, null, null);
+    public TernaryNode(E data, int index) {
+        this(data, index, null, null, null);
     }
     
     /**
      * create a new node
      * 
      * @param   data        the comparable data to store in this node
-     * @param   position    the position data to store in this node
+     * @param   index       the index data to store in this node
      * @param   left        the node to the left of this one
      * @param   same        the next node that stores the same comparable data
      * @param   right       the node to the right of this one
      */
-    public TernaryNode(E data, int position, TernaryNode<E> left, UnaryNode same, TernaryNode<E> right) {
+    public TernaryNode(E data, int index, TernaryNode<E> left, UnaryNode same, TernaryNode<E> right) {
         if (data == null) {
             throw new IllegalArgumentException("data must not be null");
         }
+        if (index < 0) {
+            throw new IndexOutOfBoundsException("index : " + index);
+        }
         this.data = data;
-        this.position = position;
+        this.index = index;
         this.left = left;
         this.same = same;
         this.right = right;

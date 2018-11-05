@@ -7,7 +7,7 @@ import java.util.Arrays;
  * @version 11/4/18
  */
 public class BinaryTree<E extends Comparable<E>> {
-    /** root        the root of the binary tree */
+    /** root                the root of the binary tree */
     private BinaryNode<E> root;
     
     /**
@@ -21,30 +21,30 @@ public class BinaryTree<E extends Comparable<E>> {
      * add a new node 
      * 
      * @param   data        the data for the node
-     * @param   position    the position data for the node
+     * @param   index       the index data for the node
      */
-    public void add(E data, int position) {
+    public void add(E data, int index) {
         if (data == null) {
             throw new IllegalArgumentException("data must not be null");
         }
-        root = add(data, position, root);
+        root = add(data, index, root);
     }
     
     /**
      * add a new node
      * 
      * @param   data        the data for the node
-     * @param   position    the position data for the node
+     * @param   index       the index data for the node
      * @param   node        the root node to compare against
      * @return              return a new node
      */
-    private BinaryNode<E> add(E data, int position, BinaryNode<E> node) {
+    private BinaryNode<E> add(E data, int index, BinaryNode<E> node) {
         if (node == null) {
-            node = new BinaryNode(data, position);
+            node = new BinaryNode<E>(data, index);
         } else if (node.data.compareTo(data) >= 0) {
-            node.left = add(data, position, node.left);
+            node.left = add(data, index, node.left);
         } else {
-            node.right = add(data, position, node.right);
+            node.right = add(data, index, node.right);
         }
         return node;
     }
@@ -52,29 +52,29 @@ public class BinaryTree<E extends Comparable<E>> {
     /**
      * get all the nodes of the tree in order
      * 
-     * return               an ordered array of all of the nodes' positions
+     * @return              an ordered array of all of the nodes' indices
      */
     public int[] getAll() {
-        int[] positionsArray = new int[0];
-        return getAll(positionsArray, root);
+        int[] indicesArray = new int[0];
+        return getAll(indicesArray, root);
     }
     
     /**
      * search through each node and return an ordered array of elements
      * 
-     * @param   positionsArray      an ordered array of each node's position data
+     * @param   indicesArray        an ordered array of each node's index data
      * @param   node                the current node in the tree
-     * @return                      an ordered array of each node's position data   
+     * @return                      an ordered array of each node's index data   
      */
-    private int[] getAll(int[] positionsArray, BinaryNode<E> node) {
+    private int[] getAll(int[] indicesArray, BinaryNode<E> node) {
         if (node != null) {
-            positionsArray = getAll(positionsArray, node.left);
+            indicesArray = getAll(indicesArray, node.left);
             // increase the length of the array by 1
-            positionsArray = Arrays.copyOf(positionsArray, positionsArray.length + 1);
-            // and add the current node's position data at the end
-            positionsArray[positionsArray.length - 1] = node.position;
-            positionsArray = getAll(positionsArray, node.right);
+            indicesArray = Arrays.copyOf(indicesArray, indicesArray.length + 1);
+            // and add the current node's index data at the end
+            indicesArray[indicesArray.length - 1] = node.index;
+            indicesArray = getAll(indicesArray, node.right);
         }
-        return positionsArray;
+        return indicesArray;
     }
 }

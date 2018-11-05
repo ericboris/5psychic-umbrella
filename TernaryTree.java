@@ -7,7 +7,7 @@ import java.util.Arrays;
  * @version 11/4/18
  */
 public class TernaryTree<E extends Comparable<E>> {
-    /** root        the root of the ternary tree */
+    /** root                the root of the ternary tree */
     private TernaryNode<E> root;
     
     /**
@@ -21,32 +21,32 @@ public class TernaryTree<E extends Comparable<E>> {
      * add a new node 
      * 
      * @param   data        the data for the node
-     * @param   position    the position data for the node
+     * @param   index       the index data for the node
      */
-    public void add(E data, int position) {
+    public void add(E data, int index) {
         if (data == null) {
             throw new IllegalArgumentException("data must not be null");
         }
-        root = add(data, position, root);
+        root = add(data, index, root);
     }
     
     /**
      * add a new node
      * 
      * @param   data        the data for the node
-     * @param   position    the position data for the node
+     * @param   index       the index data for the node
      * @param   node        the root node to compare against
      * @return              return a new node
      */
-    private TernaryNode<E> add(E data, int position, TernaryNode<E> node) {
+    private TernaryNode<E> add(E data, int index, TernaryNode<E> node) {
         if (node == null) {
-            node = new TernaryNode(data, position);
+            node = new TernaryNode<E>(data, index);
         } else if (node.data.compareTo(data) > 0) {
-            node.left = add(data, position, node.left);
+            node.left = add(data, index, node.left);
         } else if (node.data.compareTo(data) == 0) {
-            node.same = addUnary(position, node.same);
+            node.same = addUnary(index, node.same);
         } else {
-            node.right = add(data, position, node.right);
+            node.right = add(data, index, node.right);
         }
         return node;
     }
@@ -54,14 +54,15 @@ public class TernaryTree<E extends Comparable<E>> {
     /**
      * add a unary node
      * 
-     * @param   position    the position data for the node
+     * @param   index       the index data for the node
      * @param   node        the root node to compare against
+     * @return              a new node
      */
-    private UnaryNode addUnary(int position, UnaryNode node) {
+    private UnaryNode addUnary(int index, UnaryNode node) {
         if (node == null) {
-            node = new UnaryNode(position);
+            node = new UnaryNode(index);
         } else {
-            node.next = addUnary(position, node.next);
+            node.next = addUnary(index, node.next);
         }
         return node;
     }
@@ -69,50 +70,50 @@ public class TernaryTree<E extends Comparable<E>> {
     /**
      * get all the nodes of the tree in order
      * 
-     * return               an ordered array of all of the nodes' positions
+     * @return               an ordered array of all of the nodes' indexs
      */
     public int[] getAll() {
-        int[] positionsArray = new int[0];
-        return getAll(positionsArray, root);
+        int[] indicesArray = new int[0];
+        return getAll(indicesArray, root);
     }
     
     /**
      * search through each node and return an ordered array of elements
      * 
-     * @param   positionsArray      an ordered array of each node's position data
+     * @param   indicesArray        an ordered array of each node's index data
      * @param   node                the current node in the tree
-     * @return                      an ordered array of each node's position data   
+     * @return                      an ordered array of each node's index data   
      */
-    private int[] getAll(int[] positionsArray, TernaryNode<E> node) {
+    private int[] getAll(int[] indicesArray, TernaryNode<E> node) {
         if (node != null) {
             // down the left chain
-            positionsArray = getAll(positionsArray, node.left);
+            indicesArray = getAll(indicesArray, node.left);
             // down the same chain
-            positionsArray = getAllSame(positionsArray, node.same);
+            indicesArray = getAllSame(indicesArray, node.same);
             // work on this node and add it to the array
             // increase the length of the array by 1
-            positionsArray = Arrays.copyOf(positionsArray, positionsArray.length + 1);
-            // and add the current node's position data at the end
-            positionsArray[positionsArray.length - 1] = node.position;
+            indicesArray = Arrays.copyOf(indicesArray, indicesArray.length + 1);
+            // and add the current node's index data at the end
+            indicesArray[indicesArray.length - 1] = node.index;
             // down the right chain
-            positionsArray = getAll(positionsArray, node.right);
+            indicesArray = getAll(indicesArray, node.right);
         }
-        return positionsArray;
+        return indicesArray;
     }
     
     /**
-     * get the position data of each unary node
+     * get the index data of each unary node
      * 
-     * @param   positionsArray      an ordered array of each node's position data
+     * @param   indicesArray        an ordered array of each node's index data
      * @param   node                the current node in the tree
-     * @return                      an ordered array of each node's position data   
+     * @return                      an ordered array of each node's index data   
      */
-    private int[] getAllSame(int[] positionsArray, UnaryNode node) {
+    private int[] getAllSame(int[] indicesArray, UnaryNode node) {
         if (node != null) {
-            positionsArray = getAllSame(positionsArray, node.next);
-            positionsArray = Arrays.copyOf(positionsArray, positionsArray.length + 1);
-            positionsArray[positionsArray.length - 1] = node.position;
+            indicesArray = getAllSame(indicesArray, node.next);
+            indicesArray = Arrays.copyOf(indicesArray, indicesArray.length + 1);
+            indicesArray[indicesArray.length - 1] = node.index;
         }
-        return positionsArray;
+        return indicesArray;
     }
 }

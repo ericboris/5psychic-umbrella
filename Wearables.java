@@ -40,8 +40,9 @@ public class Wearables {
      * fill the wearables array from the provided file
      * 
      * @param   fileName        the name of the file to access
+     * @return                  false if file read fails, true otherwise
      */
-    public void fill(String fileName) {
+    public boolean fill(String fileName) {
         if (fileName == null) {
             throw new IllegalArgumentException("fileName must not be null");
         }
@@ -52,7 +53,7 @@ public class Wearables {
             br = new BufferedReader(new FileReader(file));
             String line;
             
-            // skip the first line of the file
+            // skip the first line of the file but parse and store the second
             br.readLine();
             header = br.readLine().split(SPLIT_CHAR);
             
@@ -68,6 +69,7 @@ public class Wearables {
             }
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         } finally {
             try {
                 br.close();
@@ -76,6 +78,7 @@ public class Wearables {
             }
         }
         this.wearables = wearablesAL.toArray(new Wearable[wearablesAL.size()]);
+        return true;
     }
     
     /**
@@ -92,27 +95,27 @@ public class Wearables {
     }
     
     /**
-     * get an ordered array of the ranking position data
+     * get an ordered array of the ranking index data
      * 
-     * @return              an ordered array of the ranking position data
+     * @return              an ordered array of the ranking index data
      */
     public int[] getRankingData() {
         return rankTree.getAll();
     }
     
     /**
-     * get an ordered array of the price position data
+     * get an ordered array of the price index data
      * 
-     * @return              an ordered array of the price position data
+     * @return              an ordered array of the price index data
      */
     public int[] getPriceData() {
         return priceTree.getAll();
     }
     
     /**
-     * get an ordered array of the company name position data
+     * get an ordered array of the company name index data
      * 
-     * @return              an ordered array of the company name position data
+     * @return              an ordered array of the company name index data
      */
     public int[] getCoNameData() {
         return coNameTree.getAll();
