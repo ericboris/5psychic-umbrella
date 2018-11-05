@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=BinaryTree
+comment0.text=\n\ A\ generic-type\ binary\ search\ tree\n\n\ @author\ Eric\ Boris\n\ @version\ 11/4/18\n
+comment1.params=
+comment1.target=BinaryTree()
+comment1.text=\n\ construct\ a\ new\ tree\n
+comment2.params=data\ position
+comment2.target=void\ add(java.lang.Comparable,\ int)
+comment2.text=\ \n\ add\ a\ new\ node\ \n\ \n\ @param\ \ \ data\ \ \ \ \ \ \ \ the\ data\ for\ the\ node\n\ @param\ \ \ position\ \ \ \ the\ position\ data\ for\ the\ node\n
+comment3.params=data\ position\ node
+comment3.target=BinaryNode\ add(java.lang.Comparable,\ int,\ BinaryNode)
+comment3.text=\n\ add\ a\ new\ node\n\ \n\ @param\ \ \ data\ \ \ \ \ \ \ \ the\ data\ for\ the\ node\n\ @param\ \ \ position\ \ \ \ the\ position\ data\ for\ the\ node\n\ @param\ \ \ node\ \ \ \ \ \ \ \ the\ root\ node\ to\ compare\ against\n\ @return\ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ a\ new\ node\n
+comment4.params=
+comment4.target=int[]\ getAll()
+comment5.params=positionsArray\ index\ node
+comment5.target=int[]\ getAll(int[],\ int,\ BinaryNode)
+numComments=6
