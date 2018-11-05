@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=TernaryNode
+comment0.text=\n\ A\ node\ in\ the\ ternary\ search\ tree\n\n\ @author\ Eric\ Boris\ \n\ @version\ 11/4/18\n
+comment1.params=data\ position
+comment1.target=TernaryNode(java.lang.Object,\ int)
+comment1.text=\n\ create\ a\ new\ node\n\ \n\ @param\ \ \ data\ \ \ \ \ \ \ \ the\ comparable\ data\ to\ store\ in\ this\ node\n\ @param\ \ \ position\ \ \ \ the\ position\ data\ to\ store\ in\ this\ node\n
+comment2.params=data\ position\ left\ same\ right
+comment2.target=TernaryNode(java.lang.Object,\ int,\ TernaryNode,\ TernaryNode,\ TernaryNode)
+comment2.text=\n\ create\ a\ new\ node\n\ \n\ @param\ \ \ data\ \ \ \ \ \ \ \ the\ comparable\ data\ to\ store\ in\ this\ node\n\ @param\ \ \ position\ \ \ \ the\ position\ data\ to\ store\ in\ this\ node\n\ @param\ \ \ left\ \ \ \ \ \ \ \ the\ node\ to\ the\ left\ of\ this\ one\n\ @param\ \ \ same\ \ \ \ \ \ \ \ the\ next\ node\ that\ stores\ the\ same\ comparable\ data\n\ @param\ \ \ right\ \ \ \ \ \ \ the\ node\ to\ the\ right\ of\ this\ one\n
+numComments=3

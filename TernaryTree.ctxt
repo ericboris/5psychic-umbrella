@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=TernaryTree
+comment0.text=\n\ A\ generic-type\ ternary\ search\ tree\n\n\ @author\ Eric\ Boris\n\ @version\ 11/4/18\n
+comment1.params=
+comment1.target=TernaryTree()
+comment1.text=\n\ construct\ a\ new\ tree\n
+comment2.params=data\ position
+comment2.target=void\ add(java.lang.Comparable,\ int)
+comment2.text=\ \n\ add\ a\ new\ node\ \n\ \n\ @param\ \ \ data\ \ \ \ \ \ \ \ the\ data\ for\ the\ node\n\ @param\ \ \ position\ \ \ \ the\ position\ data\ for\ the\ node\n
+comment3.params=data\ position\ node
+comment3.target=TernaryNode\ add(java.lang.Comparable,\ int,\ TernaryNode)
+comment3.text=\n\ add\ a\ new\ node\n\ \n\ @param\ \ \ data\ \ \ \ \ \ \ \ the\ data\ for\ the\ node\n\ @param\ \ \ position\ \ \ \ the\ position\ data\ for\ the\ node\n\ @param\ \ \ node\ \ \ \ \ \ \ \ the\ root\ node\ to\ compare\ against\n\ @return\ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ a\ new\ node\n
+comment4.params=
+comment4.target=int[]\ getAll()
+comment4.text=\n\ get\ all\ the\ nodes\ of\ the\ tree\ in\ order\n\ \n\ return\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ an\ ordered\ array\ of\ all\ of\ the\ nodes'\ positions\n
+comment5.params=positionsArray\ node
+comment5.target=int[]\ getAll(int[],\ TernaryNode)
+comment5.text=\n\ search\ through\ each\ node\ and\ return\ an\ ordered\ array\ of\ elements\n\ \n\ @param\ \ \ positionsArray\ \ \ \ \ \ an\ ordered\ array\ of\ each\ node's\ position\ data\n\ @param\ \ \ node\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ the\ current\ node\ in\ the\ tree\n\ @return\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ an\ ordered\ array\ of\ each\ node's\ position\ data\ \ \ \n
+numComments=6

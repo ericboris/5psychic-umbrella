@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=UnaryNode
+comment0.text=\n\ A\ node\ in\ the\ ternary\ search\ tree\n\n\ @author\ Eric\ Boris\n\ @version\ 11/4/18\n
+comment1.params=position
+comment1.target=UnaryNode(int)
+comment1.text=\n\ create\ a\ new\ node\n\ \n\ @param\ \ \ position\ \ \ \ \ \ \ \ the\ position\ data\ stored\ in\ the\ node\n
+comment2.params=position\ next
+comment2.target=UnaryNode(int,\ UnaryNode)
+comment2.text=\n\ create\ a\ new\ node\n\ \n\ @param\ \ \ position\ \ \ \ \ \ \ \ the\ position\ data\ stored\ in\ the\ node\n\ @param\ \ \ next\ \ \ \ \ \ \ \ \ \ \ \ the\ next\ node\ with\ the\ same\ table\ data\n
+numComments=3
