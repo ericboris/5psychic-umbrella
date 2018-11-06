@@ -68,13 +68,12 @@ public class Wearables {
                 index++;
             }
         } catch (IOException e) {
-            e.printStackTrace();
             return false;
         } finally {
             try {
                 br.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                return false;
             }
         }
         this.wearables = wearablesAL.toArray(new Wearable[wearablesAL.size()]);
@@ -170,7 +169,6 @@ public class Wearables {
             bw.append(csvText);
             bw.close();
         } catch (IOException e) {
-            e.printStackTrace();
             return false;
         }
 
