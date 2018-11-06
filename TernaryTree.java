@@ -119,4 +119,53 @@ public class TernaryTree<E extends Comparable<E>> {
         }
         return indicesArray;
     }
+    
+    /**
+     * balance the tree's nodes
+     */
+    public void balance() {
+        // get an array of nodes ordered by data
+        TernaryNode[] nodeArray = new TernaryNode[0];
+        nodeArray = getOrderedNodes(nodeArray, root);
+        // rebuild a balanced tree from the array of nodes
+        this.root = arrayToTree(nodeArray, 0, nodeArray.length - 1);
+    }
+    
+    /**
+     * get an ordered array of all the nodes in the tree 
+     * 
+     * @param   nodeArray       an array to add nodes to
+     * @param   node            the current root node
+     * @return                  an ordered array of nodes
+     */
+    private TernaryNode<E>[] getOrderedNodes(TernaryNode<E>[] nodeArray, TernaryNode<E> node) {
+        if (node != null) {
+            nodeArray = getOrderedNodes(nodeArray, node.left);
+            nodeArray = Arrays.copyOf(nodeArray, nodeArray.length + 1);
+            nodeArray[nodeArray.length - 1] = node;
+            nodeArray = getOrderedNodes(nodeArray, node.right);
+        }
+        return nodeArray;
+    }
+    
+    /**
+     * return the root node of a balanced binary tree from an ordered array of nodes
+     * 
+     * @param   nodeArray       the ordered array
+     * @param   start           the current start index of the array
+     * @param   end             the currend end index of the array
+     * @return                  the root node of a balance binary tree
+     */
+    private TernaryNode<E> arrayToTree(TernaryNode[] nodeArray, int start, int end) {
+        if (start > end) {
+            return null;
+        }
+        
+        int mid = (start + end) / 2;
+        TernaryNode<E> node = nodeArray[mid];
+
+        node.left = arrayToTree(nodeArray, start, mid - 1);
+        node.right = arrayToTree(nodeArray, mid + 1, end);
+        return node;
+    }
 }

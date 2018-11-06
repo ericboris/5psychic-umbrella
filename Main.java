@@ -15,9 +15,11 @@ public class Main {
     public static void main(String[] args) {
         String fileName = "WearablesArray.txt";
         Wearables w = new Wearables();
-        
         w.fill(fileName);
-        w.balanceBinaryTree();
+        
+        w.balanceRankTree();
+        w.balancePriceTree();
+        w.balanceCoNameTree();
         
         int[] rankingData = w.getRankingData();
         int[] priceData = w.getPriceData();

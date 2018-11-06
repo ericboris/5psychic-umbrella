@@ -23,10 +23,10 @@ public class Wearables {
     private TernaryTree<Double> priceTree;
     /** coNameTree      and ordered array of wearables by company name */
     private TernaryTree<String> coNameTree;
-    
+
     /** SPLIT_CHAR      the split delimiter used in the file */
     private static final String SPLIT_CHAR = "@";
-    
+
     /**
      * create a new wearables object
      */
@@ -35,7 +35,7 @@ public class Wearables {
         priceTree = new TernaryTree<Double>();
         coNameTree = new TernaryTree<String>();
     }
-    
+
     /**
      * fill the wearables array from the provided file
      * 
@@ -52,11 +52,11 @@ public class Wearables {
         try {
             br = new BufferedReader(new FileReader(file));
             String line;
-            
+
             // skip the first line of the file but parse and store the second
             br.readLine();
             header = br.readLine().split(SPLIT_CHAR);
-            
+
             // read each line out of the file
             int index = 0;
             while ((line = br.readLine()) != null) {
@@ -80,7 +80,7 @@ public class Wearables {
         this.wearables = wearablesAL.toArray(new Wearable[wearablesAL.size()]);
         return true;
     }
-    
+
     /**
      * get the wearable at the provided index
      * 
@@ -93,7 +93,7 @@ public class Wearables {
         }
         return wearables[index];
     }
-    
+
     /**
      * get an ordered array of the ranking index data
      * 
@@ -102,7 +102,7 @@ public class Wearables {
     public int[] getRankingData() {
         return rankTree.getAll();
     }
-    
+
     /**
      * get an ordered array of the price index data
      * 
@@ -111,7 +111,7 @@ public class Wearables {
     public int[] getPriceData() {
         return priceTree.getAll();
     }
-    
+
     /**
      * get an ordered array of the company name index data
      * 
@@ -120,7 +120,7 @@ public class Wearables {
     public int[] getCoNameData() {
         return coNameTree.getAll();
     }
-    
+
     /**
      * save a named csv of wearables to drive based on provided index ranking
      * 
@@ -132,13 +132,13 @@ public class Wearables {
         if (fileName == null || indices == null) {
             throw new IllegalArgumentException("argument must not be null");
         }
-        
+
         StringBuilder sb = new StringBuilder();
         for (String h : header) {
             sb.append(h + ",");
         }
         sb.append("\n");
-        
+
         for (int index : indices) {
             Wearable w = get(index);
             sb.append(w.getRank() + ",");
@@ -154,16 +154,16 @@ public class Wearables {
             sb.append("\"" + w.getCoCountry() + "\",");
             sb.append("\n");
         }
-        
+
         String csvText = sb.toString();
-        
+
         try {
             // delete file if it already exists to prevent appending
             File file = new File(fileName + ".csv");
             if (file.exists()) {
                 file.delete();
             }
-            
+
             // create and save new csv
             FileWriter fw = new FileWriter(fileName + ".csv", true);
             BufferedWriter bw = new BufferedWriter(fw);
@@ -173,18 +173,44 @@ public class Wearables {
             e.printStackTrace();
             return false;
         }
-        
+
         return true;
     }
-    
+
     /**
-     * Balance the binary tree
+     * Balance the rank tree
      * 
      * @return              true if balancing succeeds, false otherwise
      */
-    public boolean balanceBinaryTree() {
+    public boolean balanceRankTree() {
         if (rankTree != null) {
             rankTree.balance();
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Balance the price tree
+     * 
+     * @return              true if balancing succeeds, false otherwise
+     */
+    public boolean balancePriceTree() {
+        if (priceTree != null) {
+            priceTree.balance();
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Balance the company name tree
+     * 
+     * @return              true if balancing succeeds, false otherwise
+     */
+    public boolean balanceCoNameTree() {
+        if (coNameTree != null) {
+            coNameTree.balance();
             return true;
         }
         return false;
