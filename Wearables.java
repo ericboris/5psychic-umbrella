@@ -176,4 +176,17 @@ public class Wearables {
         
         return true;
     }
+    
+    /**
+     * Balance the binary tree
+     * 
+     * @return              true if balancing succeeds, false otherwise
+     */
+    public boolean balanceBinaryTree() {
+        if (rankTree != null) {
+            rankTree.balance();
+            return true;
+        }
+        return false;
+    }
 }
