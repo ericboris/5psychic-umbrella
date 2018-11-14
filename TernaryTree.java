@@ -17,18 +17,7 @@ public class TernaryTree<E extends Comparable<E>> {
      */
     public TernaryTree() {
         root = null;
-    }
-    
-    /**
-     * set the size of the tree
-     * 
-     * @param   size        the number of nodes in the tree
-     */
-    public void setSize(int size) {
-        if (size < 0) {
-            throw new IllegalArgumentException("size must not be less than zero");
-        }
-        this.size = size;
+        size = 0;
     }
     
     /** 
@@ -45,6 +34,7 @@ public class TernaryTree<E extends Comparable<E>> {
             throw new IndexOutOfBoundsException("index : " + index);
         }
         root = add(data, index, root);
+        size++;
     }
     
     /**
