@@ -9,12 +9,26 @@ import java.util.Arrays;
 public class TernaryTree<E extends Comparable<E>> {
     /** root                the root of the ternary tree */
     private TernaryNode<E> root;
+    /** size                the size of the tree; */
+    private int size;
     
     /**
      * construct a new tree
      */
     public TernaryTree() {
         root = null;
+    }
+    
+    /**
+     * set the size of the tree
+     * 
+     * @param   size        the number of nodes in the tree
+     */
+    public void setSize(int size) {
+        if (size < 0) {
+            throw new IllegalArgumentException("size must not be less than zero");
+        }
+        this.size = size;
     }
     
     /** 
@@ -75,9 +89,9 @@ public class TernaryTree<E extends Comparable<E>> {
      * 
      * @return               an ordered array of all of the nodes' indexs
      */
-    public int[] getAll() {
+    public int[] getIndices() {
         int[] indicesArray = new int[0];
-        return getAll(indicesArray, root);
+        return getIndices(indicesArray, root);
     }
     
     /**
@@ -87,19 +101,19 @@ public class TernaryTree<E extends Comparable<E>> {
      * @param   node                the current node in the tree
      * @return                      an ordered array of each node's index data   
      */
-    private int[] getAll(int[] indicesArray, TernaryNode<E> node) {
+    private int[] getIndices(int[] indicesArray, TernaryNode<E> node) {
         if (node != null) {
             // down the left chain
-            indicesArray = getAll(indicesArray, node.left);
+            indicesArray = getIndices(indicesArray, node.left);
             // down the same chain
-            indicesArray = getAllSame(indicesArray, node.same);
+            indicesArray = getIndicesSame(indicesArray, node.same);
             // work on this node and add it to the array
             // increase the length of the array by 1
             indicesArray = Arrays.copyOf(indicesArray, indicesArray.length + 1);
             // and add the current node's index data at the end
             indicesArray[indicesArray.length - 1] = node.index;
             // down the right chain
-            indicesArray = getAll(indicesArray, node.right);
+            indicesArray = getIndices(indicesArray, node.right);
         }
         return indicesArray;
     }
@@ -111,61 +125,12 @@ public class TernaryTree<E extends Comparable<E>> {
      * @param   node                the current node in the tree
      * @return                      an ordered array of each node's index data   
      */
-    private int[] getAllSame(int[] indicesArray, UnaryNode node) {
+    private int[] getIndicesSame(int[] indicesArray, UnaryNode node) {
         if (node != null) {
-            indicesArray = getAllSame(indicesArray, node.next);
+            indicesArray = getIndicesSame(indicesArray, node.next);
             indicesArray = Arrays.copyOf(indicesArray, indicesArray.length + 1);
             indicesArray[indicesArray.length - 1] = node.index;
         }
         return indicesArray;
-    }
-    
-    /**
-     * balance the tree's nodes
-     */
-    public void balance() {
-        // get an array of nodes ordered by data
-        TernaryNode[] nodeArray = new TernaryNode[0];
-        nodeArray = getOrderedNodes(nodeArray, root);
-        // rebuild a balanced tree from the array of nodes
-        this.root = arrayToTree(nodeArray, 0, nodeArray.length - 1);
-    }
-    
-    /**
-     * get an ordered array of all the nodes in the tree 
-     * 
-     * @param   nodeArray       an array to add nodes to
-     * @param   node            the current root node
-     * @return                  an ordered array of nodes
-     */
-    private TernaryNode<E>[] getOrderedNodes(TernaryNode<E>[] nodeArray, TernaryNode<E> node) {
-        if (node != null) {
-            nodeArray = getOrderedNodes(nodeArray, node.left);
-            nodeArray = Arrays.copyOf(nodeArray, nodeArray.length + 1);
-            nodeArray[nodeArray.length - 1] = node;
-            nodeArray = getOrderedNodes(nodeArray, node.right);
-        }
-        return nodeArray;
-    }
-    
-    /**
-     * return the root node of a balanced binary tree from an ordered array of nodes
-     * 
-     * @param   nodeArray       the ordered array
-     * @param   start           the current start index of the array
-     * @param   end             the currend end index of the array
-     * @return                  the root node of a balance binary tree
-     */
-    private TernaryNode<E> arrayToTree(TernaryNode[] nodeArray, int start, int end) {
-        if (start > end) {
-            return null;
-        }
-        
-        int mid = (start + end) / 2;
-        TernaryNode<E> node = nodeArray[mid];
-
-        node.left = arrayToTree(nodeArray, start, mid - 1);
-        node.right = arrayToTree(nodeArray, mid + 1, end);
-        return node;
     }
 }

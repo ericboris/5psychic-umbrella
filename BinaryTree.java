@@ -9,14 +9,17 @@ import java.util.Arrays;
 public class BinaryTree<E extends Comparable<E>> {
     /** root                the root of the binary tree */
     private BinaryNode<E> root;
-    
+    /** size                the size of the tree; */
+    private int size;
+
     /**
      * construct a new tree
      */
     public BinaryTree() {
+        size = 0;
         root = null;
     }
-    
+
     /** 
      * add a new node 
      * 
@@ -31,8 +34,9 @@ public class BinaryTree<E extends Comparable<E>> {
             throw new IndexOutOfBoundsException("index : " + index);
         }
         root = add(data, index, root);
+        size++;
     }
-    
+
     /**
      * add a new node
      * 
@@ -51,17 +55,17 @@ public class BinaryTree<E extends Comparable<E>> {
         }
         return node;
     }
-    
+
     /**
      * get all the nodes of the tree in order
      * 
      * @return              an ordered array of all of the nodes' indices
      */
-    public int[] getAll() {
+    public int[] getIndices() {
         int[] indicesArray = new int[0];
-        return getAll(indicesArray, root);
+        return getIndices(indicesArray, root);
     }
-    
+
     /**
      * search through each node and return an ordered array of elements
      * 
@@ -69,29 +73,50 @@ public class BinaryTree<E extends Comparable<E>> {
      * @param   node                the current node in the tree
      * @return                      an ordered array of each node's index data   
      */
-    private int[] getAll(int[] indicesArray, BinaryNode<E> node) {
+    private int[] getIndices(int[] indicesArray, BinaryNode<E> node) {
         if (node != null) {
-            indicesArray = getAll(indicesArray, node.left);
+            indicesArray = getIndices(indicesArray, node.left);
             // increase the length of the array by 1
             indicesArray = Arrays.copyOf(indicesArray, indicesArray.length + 1);
             // and add the current node's index data at the end
             indicesArray[indicesArray.length - 1] = node.index;
-            indicesArray = getAll(indicesArray, node.right);
+            indicesArray = getIndices(indicesArray, node.right);
         }
         return indicesArray;
     }
-    
+
     /**
      * balance the tree's nodes
      */
     public void balance() {
         // get an array of nodes ordered by data
-        BinaryNode[] nodeArray = new BinaryNode[0];
-        nodeArray = getOrderedNodes(nodeArray, root);
+        //BinaryNode[] nodeArray = new BinaryNode[0];
+        int[] indicesArray = getIndices(new int[0], root);
+        int[] dataArray = getData(new int[0], root);
+        //nodeArray = getOrderedNodes(nodeArray, root);
         // rebuild a balanced tree from the array of nodes
-        this.root = arrayToTree(nodeArray, 0, nodeArray.length - 1);
+        this.root = arrayToTree(dataArray, indicesArray, 0, dataArray.length - 1);
     }
-    
+
+    /**
+     * search through each node and return an ordered array of elements
+     * 
+     * @param   indicesArray        an ordered array of each node's index data
+     * @param   node                the current node in the tree
+     * @return                      an ordered array of each node's index data   
+     */
+    private int[] getData(int[] dataArray, BinaryNode<E> node) {
+        if (node != null) {
+            dataArray = getData(dataArray, node.left);
+            // increase the length of the array by 1
+            dataArray = Arrays.copyOf(dataArray, dataArray.length + 1);
+            // and add the current node's index data at the end
+            dataArray[dataArray.length - 1] = (Integer) node.data;
+            dataArray = getData(dataArray, node.right);
+        }
+        return dataArray;
+    }
+
     /**
      * get an ordered array of all the nodes in the tree 
      * 
@@ -108,7 +133,7 @@ public class BinaryTree<E extends Comparable<E>> {
         }
         return nodeArray;
     }
-    
+
     /**
      * return the root node of a balanced binary tree from an ordered array of nodes
      * 
@@ -117,16 +142,16 @@ public class BinaryTree<E extends Comparable<E>> {
      * @param   end             the currend end index of the array
      * @return                  the root node of a balance binary tree
      */
-    private BinaryNode<E> arrayToTree(BinaryNode[] nodeArray, int start, int end) {
+    private BinaryNode<E> arrayToTree(int[] dataArray, int[] indicesArray, int start, int end) {
         if (start > end) {
             return null;
         }
-        
-        int mid = (start + end) / 2;
-        BinaryNode<E> node = nodeArray[mid];
 
-        node.left = arrayToTree(nodeArray, start, mid - 1);
-        node.right = arrayToTree(nodeArray, mid + 1, end);
+        int mid = (start + end) / 2;
+        BinaryNode<E> node = new BinaryNode(dataArray[mid], indicesArray[mid]);
+
+        node.left = arrayToTree(dataArray, indicesArray, start, mid - 1);
+        node.right = arrayToTree(dataArray, indicesArray, mid + 1, end);
         return node;
     }
 }

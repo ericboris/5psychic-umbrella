@@ -99,7 +99,7 @@ public class Wearables {
      * @return              an ordered array of the ranking index data
      */
     public int[] getRankingData() {
-        return rankTree.getAll();
+        return rankTree.getIndices();
     }
 
     /**
@@ -108,7 +108,7 @@ public class Wearables {
      * @return              an ordered array of the price index data
      */
     public int[] getPriceData() {
-        return priceTree.getAll();
+        return priceTree.getIndices();
     }
 
     /**
@@ -117,7 +117,7 @@ public class Wearables {
      * @return              an ordered array of the company name index data
      */
     public int[] getCoNameData() {
-        return coNameTree.getAll();
+        return coNameTree.getIndices();
     }
 
     /**
@@ -183,32 +183,6 @@ public class Wearables {
     public boolean balanceRankTree() {
         if (rankTree != null) {
             rankTree.balance();
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Balance the price tree
-     * 
-     * @return              true if balancing succeeds, false otherwise
-     */
-    public boolean balancePriceTree() {
-        if (priceTree != null) {
-            priceTree.balance();
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Balance the company name tree
-     * 
-     * @return              true if balancing succeeds, false otherwise
-     */
-    public boolean balanceCoNameTree() {
-        if (coNameTree != null) {
-            coNameTree.balance();
             return true;
         }
         return false;
