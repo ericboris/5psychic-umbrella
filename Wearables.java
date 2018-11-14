@@ -174,17 +174,4 @@ public class Wearables {
 
         return true;
     }
-
-    /**
-     * Balance the rank tree
-     * 
-     * @return              true if balancing succeeds, false otherwise
-     */
-    public boolean balanceRankTree() {
-        if (rankTree != null) {
-            rankTree.balance();
-            return true;
-        }
-        return false;
-    }
 }

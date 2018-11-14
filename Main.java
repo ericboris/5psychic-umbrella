@@ -25,7 +25,6 @@ public class Main {
         System.out.println(w.get(2).toString());
         System.out.println("\n");
         
-        w.balanceRankTree();
         int[] r = w.getRankingData();
         System.out.println("Top 3 wearables by Ranking");
         System.out.println(w.get(r[0]).toString());
